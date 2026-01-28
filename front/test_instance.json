@@ -26,6 +26,37 @@
         "high_caffeine",
         "quick"
       ]
+    },
+    {
+      "recipe_name": "Peppermint Mocha",
+      "description": "Chocolate mocha with refreshing peppermint.",
+      "taste_bitterness": "0.35",
+      "taste_sweetness": "0.8",
+      "taste_acidity": "0.2",
+      "taste_body": "0.4",
+      "strength": "3",
+      "portion_size_ml": "400",
+      "difficulty": "intermediate",
+      "rating": "4.0",
+      "preparation_time_minutes": "3",
+      "required_equipment": [
+        "espresso_machine",
+        "grinder",
+        "milk_frother"
+      ],
+      "required_products": {
+        "coffee_beans": "18g",
+        "whole_milk": "250ml",
+        "chocolate_syrup": "30ml",
+        "vanilla_syrup": "15ml",
+        "whipped_cream": "30g"
+      },
+      "tags": [
+        "hot",
+        "classic",
+        "high_caffeine",
+        "quick"
+      ]
     }
   ]
 }

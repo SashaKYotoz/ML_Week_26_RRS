@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import ast
 from RecommendsFilter import RecommendsFilter
-from NewUserInteraction import NewUserInteraction
 from ColdStartRecommender import ColdStartRecommender
 
 if __name__ == "__main__":

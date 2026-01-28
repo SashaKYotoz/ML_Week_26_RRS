@@ -1,63 +1,70 @@
 body {
-            background-color: #f0f2f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        .coffee-card {
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            border-radius: 12px;
-            overflow: hidden;
-        }
+.coffee-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+}
 
-        .coffee-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
+.coffee-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
 
-        .taste-bar-bg {
-            height: 8px;
-            border-radius: 4px;
-            background-color: #e9ecef;
-        }
+.taste-bar-bg {
+    height: 8px;
+    border-radius: 4px;
+    background-color: #e9ecef;
+}
 
-        .taste-fill {
-            height: 100%;
-            border-radius: 4px;
-            background: linear-gradient(90deg, #6f4e37, #a0704c);
-        }
+.taste-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #6f4e37, #a0704c);
+}
 
-        .card-header-custom {
-            background-color: #fff;
-            border-bottom: 1px solid #f0f0f0;
-            padding: 1.5rem;
-        }
+.card-header-custom {
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 1.5rem;
+}
 
-        .metric-box {
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-        }
+.metric-box {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+}
 
-        .metric-label {
-            font-size: 0.75rem;
-            color: #6c757d;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+.metric-label {
+    font-size: 0.75rem;
+    color: #6c757d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
-        .metric-value {
-            font-weight: 600;
-            color: #212529;
-        }
+.metric-value {
+    font-weight: 600;
+    color: #212529;
+}
 
-        .tag-pill {
-            font-size: 0.8rem;
-            padding: 5px 12px;
-            border-radius: 20px;
-            background-color: #e3f2fd;
-            color: #0d6efd;
-            margin-right: 5px;
-            display: inline-block;
-        }
+.tag-pill {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background-color: #e3f2fd;
+    color: #0d6efd;
+    margin-right: 5px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
