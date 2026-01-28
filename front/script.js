@@ -1,5 +1,10 @@
 const API_URL = 'https://saleable-calceolate-carolyne.ngrok-free.dev/predict';
 
+function formatLabel(str) {
+    if (!str) return '';
+    return str.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+}
+
 function renderTasteBar(label, value) {
     const percentage = parseFloat(value) * 100;
     return `
@@ -17,23 +22,20 @@ function renderTasteBar(label, value) {
 
 function createCoffeeCard(coffee) {
     const tagsHtml = (coffee.tags || []).map(tag =>
-        `<span class="tag-pill">${tag.replace('_', ' ')}</span>`
+        `<span class="tag-pill">${formatLabel(tag)}</span>`
     ).join('');
-
     const equipmentHtml = (coffee.required_equipment || []).map(eq =>
-        `<span class="badge bg-secondary me-1 mb-1 fw-normal">${eq.replace('_', ' ')}</span>`
+        `<span class="badge bg-secondary me-1 mb-1 fw-normal">${formatLabel(eq)}</span>`
     ).join('');
 
     let productsHtml = '';
-    if (Array.isArray(coffee.required_products)) {
-        productsHtml = coffee.required_products.map(prod =>
-            `<li class="small text-muted">${prod}</li>`
-        ).join('');
-    } else if (typeof coffee.required_products === 'object' && coffee.required_products !== null) {
+    if (coffee.required_products && typeof coffee.required_products === 'object') {
         productsHtml = Object.entries(coffee.required_products).map(([key, value]) =>
-            `<li class="small text-muted">${key.replace(/_/g, ' ')}: ${value}</li>`
+            `<li class="small text-muted">${formatLabel(key)}: ${value}</li>`
         ).join('');
     }
+
+    const displayScore = coffee.score !== undefined ? parseFloat(coffee.score).toFixed(1) : 'N/A';
 
     return `
         <div class="card coffee-card mb-4 shadow-sm">
@@ -44,8 +46,8 @@ function createCoffeeCard(coffee) {
                     <div class="mt-2">${tagsHtml}</div>
                 </div>
                 <div class="text-end">
-                    <div class="display-6 fw-bold text-primary">${coffee.rating}</div>
-                    <small class="text-muted">Rating</small>
+                    <div class="display-6 fw-bold text-primary">${displayScore}</div>
+                    <small class="text-muted">Score</small>
                 </div>
             </div>
             
@@ -133,7 +135,6 @@ async function fetchRecommendations() {
     `;
 
     try {
-        console.log(userId)
         const response = await axios.get(API_URL, {
             params: { user_id: userId, k: 5 },
             headers: {
@@ -142,11 +143,12 @@ async function fetchRecommendations() {
         });
 
         const responseData = response.data;
-        const coffees = responseData.coffees ? responseData.coffees : responseData;
+        const coffees = Array.isArray(responseData) ? responseData : (responseData.coffees || []);
 
+        console.log("API Response:", responseData);
         container.innerHTML = '';
 
-        if (Array.isArray(coffees) && coffees.length > 0) {
+        if (coffees.length > 0) {
             coffees.forEach(coffee => {
                 container.innerHTML += createCoffeeCard(coffee);
             });
@@ -158,36 +160,41 @@ async function fetchRecommendations() {
             `;
         }
     } catch (error) {
-        console.error(error);
+        console.error("Fetch error:", error);
 
         const mockData = [
             {
-                "recipe_name": "Latte",
+                "recipe_id": "mock_latte_001",
+                "recipe_name": "Recipe Classic Latte",
                 "description": "Espresso with lots of steamed milk and a thin layer of foam",
-                "taste_bitterness": "0.8",
-                "taste_sweetness": "0.5",
-                "taste_acidity": "0.1",
-                "taste_body": "0.5",
+                "taste_bitterness": "0.80000",
+                "taste_sweetness": "0.50000",
+                "taste_acidity": "0.10000",
+                "taste_body": "0.50000",
                 "strength": "2",
-                "portion_size_ml": "30",
+                "portion_size_ml": "230",
                 "difficulty": "intermediate",
-                "rating": "5.0",
+                "score": 1.95,
                 "preparation_time_minutes": "4",
                 "required_equipment": ["espresso_machine", "grinder"],
-                "required_products": ["coffee_beans: 18g", "water: 200ml"],
-                "tags": ["hot", "classic", "high_caffeine", "quick"]
+                "required_products": {
+                    "coffee_beans": "18g",
+                    "milk": "200ml"
+                },
+                "tags": ["hot", "classic", "milky"]
             },
             {
-                "recipe_name": "Peppermint Mocha",
+                "recipe_id": "mock_mocha_002",
+                "recipe_name": "Recipe Peppermint Mocha",
                 "description": "Chocolate mocha with refreshing peppermint.",
-                "taste_bitterness": "0.35",
-                "taste_sweetness": "0.8",
-                "taste_acidity": "0.2",
-                "taste_body": "0.4",
+                "taste_bitterness": "0.3500",
+                "taste_sweetness": "0.8000",
+                "taste_acidity": "0.2000",
+                "taste_body": "0.4000",
                 "strength": "3",
                 "portion_size_ml": "400",
                 "difficulty": "intermediate",
-                "rating": "4.0",
+                "score": 1.45,
                 "preparation_time_minutes": "3",
                 "required_equipment": ["espresso_machine", "grinder", "milk_frother"],
                 "required_products": {
@@ -195,7 +202,7 @@ async function fetchRecommendations() {
                     "whole_milk": "250ml",
                     "chocolate_syrup": "30ml"
                 },
-                "tags": ["hot", "classic", "high_caffeine", "quick"]
+                "tags": ["sweet", "flavored", "winter"]
             }
         ];
 

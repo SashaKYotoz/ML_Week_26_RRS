@@ -33,7 +33,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Схема для відповіді
 class RecipeRecommendation(BaseModel):
     recipe_id: str
     recipe_name: str
@@ -94,7 +93,7 @@ def get_recommendations(user_id: str, k: int = 5):
         
         recommendations.append({
             "recipe_id": str(row['recipe_id']),
-            "recipe_name": row.get('recipe_name', f"Recipe {row['recipe_id']}"),
+            "recipe_name": row.get('name', ""),
             "description": row.get('description', ""),
             "taste_bitterness": str(row['taste_bitterness']),
             "taste_sweetness": str(row['taste_sweetness']),
