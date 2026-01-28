@@ -18,16 +18,33 @@
 </nav>
 
 <div class="container pb-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-8" id="coffee-list">
-            <div class="text-center py-5">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Loading...</span>
+    <div class="row justify-content-center mb-5">
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <label for="user-id-input" class="form-label fw-bold text-muted small text-uppercase">User Identification</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white text-muted">user_</span>
+                        <input type="text" id="user-id-input" class="form-control form-control-lg" placeholder="00719">
+                        <button class="btn btn-primary px-4 fw-bold" id="fetch-btn" type="button">
+                            Get Recommendations
+                        </button>
+                    </div>
+                    <div class="form-text mt-2">Enter your numeric ID (e.g., 00719)</div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8" id="coffee-list">
+            <div class="text-center text-muted py-5" id="initial-message">
+                <p class="lead">Enter a User ID above to generate coffee recommendations.</p>
+            </div>
+        </div>
+    </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
