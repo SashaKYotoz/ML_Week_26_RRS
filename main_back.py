@@ -42,7 +42,7 @@ with torch.no_grad():
 recipe_ids = recipes_df['recipe_id'].values
     
 
-def get_recommendations(user_id: int, k: int=5):
+def get_recommendations(user_id: str, k: int=5):
     user_row = users_df[users_df['user_id'] == user_id]
     if user_row.empty:
         return None
