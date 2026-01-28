@@ -1,12 +1,13 @@
-from fastapi import FastAPI, HTTPException, Query
-from pydantic import BaseModel
+import ast
 from typing import List, Dict, Any
-import torch
+
 import pandas as pd
-import numpy as np
-from twotower import TwoTowerModel
+import torch
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import ast 
+from pydantic import BaseModel
+
+from twotower import TwoTowerModel
 
 app = FastAPI()
 

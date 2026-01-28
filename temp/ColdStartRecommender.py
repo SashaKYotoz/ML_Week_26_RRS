@@ -1,6 +1,7 @@
-import pandas as pd
-import numpy as np
 import ast
+
+import numpy as np
+import pandas as pd
 
 
 class ColdStartRecommender:
