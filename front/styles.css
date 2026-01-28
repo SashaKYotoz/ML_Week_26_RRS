@@ -17,15 +17,31 @@ body {
 }
 
 .taste-bar-bg {
-    height: 8px;
-    border-radius: 4px;
+    position: relative;
+    height: 10px;
+    border-radius: 6px;
     background-color: #e9ecef;
+    overflow: hidden;
 }
 
 .taste-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
     height: 100%;
-    border-radius: 4px;
+    border-radius: 6px;
     background: linear-gradient(90deg, #6f4e37, #a0704c);
+    z-index: 1;
+}
+
+.user_taste-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, rgba(94, 118, 54, 0.45), rgba(114, 160, 76, 0.35));
+    z-index: 2;
 }
 
 .card-header-custom {

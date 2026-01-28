@@ -1,4 +1,5 @@
 const API_URL = 'https://saleable-calceolate-carolyne.ngrok-free.dev/predict';
+
 // const API_URL = 'https://ml-week-26-rrs-1.onrender.com/predict';
 
 function formatLabel(str) {
@@ -6,8 +7,9 @@ function formatLabel(str) {
     return str.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 }
 
-function renderTasteBar(label, value) {
+function renderTasteBar(label, value, value_user) {
     const percentage = parseFloat(value) * 100;
+    const percentage_user = parseFloat(value_user) * 100;
     return `
         <div class="mb-2">
             <div class="d-flex justify-content-between mb-1">
@@ -16,6 +18,7 @@ function renderTasteBar(label, value) {
             </div>
             <div class="taste-bar-bg">
                 <div class="taste-fill" style="width: ${percentage}%"></div>
+                <div class="user_taste-fill" style="width: ${percentage_user}%"></div>
             </div>
         </div>
     `;
@@ -83,10 +86,10 @@ function createCoffeeCard(coffee) {
                 <div class="row">
                     <div class="col-md-6 mb-3 mb-md-0">
                         <h6 class="fw-bold text-uppercase small text-muted mb-3">Taste Profile</h6>
-                        ${renderTasteBar('Bitterness', coffee.taste_bitterness)}
-                        ${renderTasteBar('Sweetness', coffee.taste_sweetness)}
-                        ${renderTasteBar('Acidity', coffee.taste_acidity)}
-                        ${renderTasteBar('Body', coffee.taste_body)}
+                        ${renderTasteBar('Bitterness', coffee.taste_bitterness, coffee.u_taste_bitterness)}
+                        ${renderTasteBar('Sweetness', coffee.taste_sweetness, coffee.u_taste_sweetness)}
+                        ${renderTasteBar('Acidity', coffee.taste_acidity, coffee.u_taste_acidity)}
+                        ${renderTasteBar('Body', coffee.taste_body, coffee.u_taste_body)}
                     </div>
                     
                     <div class="col-md-6">
@@ -143,7 +146,7 @@ async function fetchRecommendations() {
 
     try {
         const response = await axios.get(API_URL, {
-            params: { user_id: userId, k: amount },
+            params: {user_id: userId, k: amount},
             headers: {
                 "ngrok-skip-browser-warning": "69420"
             }
@@ -178,6 +181,10 @@ async function fetchRecommendations() {
                 "taste_sweetness": "0.50000",
                 "taste_acidity": "0.10000",
                 "taste_body": "0.50000",
+                "u_taste_bitterness": "0.65000",
+                "u_taste_sweetness": "0.45000",
+                "u_taste_acidity": "0.15000",
+                "u_taste_body": "0.40000",
                 "strength": "2",
                 "portion_size_ml": "230",
                 "difficulty": "intermediate",
@@ -198,6 +205,10 @@ async function fetchRecommendations() {
                 "taste_sweetness": "0.8000",
                 "taste_acidity": "0.2000",
                 "taste_body": "0.4000",
+                "u_taste_bitterness": "0.2500",
+                "u_taste_sweetness": "0.5600",
+                "u_taste_acidity": "0.1000",
+                "u_taste_body": "0.3000",
                 "strength": "3",
                 "portion_size_ml": "400",
                 "difficulty": "intermediate",
