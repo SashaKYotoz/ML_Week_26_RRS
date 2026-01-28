@@ -109,8 +109,9 @@ def get_recommendations(user_id: str, k: int = 5):
 
         recommendations.append({
             "recipe_id": str(row['recipe_id']),
-            "recipe_name": str(rec_name),
-            "description": str(row.get('description', "")),
+
+            "recipe_name": row.get('name', ""),
+            "description": row.get('description', ""),
             "taste_bitterness": str(row['taste_bitterness']),
             "taste_sweetness": str(row['taste_sweetness']),
             "taste_acidity": str(row['taste_acidity']),
