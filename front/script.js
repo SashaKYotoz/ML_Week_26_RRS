@@ -1,4 +1,5 @@
 const API_URL = 'https://saleable-calceolate-carolyne.ngrok-free.dev/predict';
+// const API_URL = 'https://ml-week-26-rrs-1.onrender.com/predict';
 
 function formatLabel(str) {
     if (!str) return '';
@@ -113,11 +114,17 @@ function createCoffeeCard(coffee) {
 
 async function fetchRecommendations() {
     const userIdInput = document.getElementById('user-id-input');
+    const amountInput = document.getElementById('amount-input');
     const container = document.getElementById('coffee-list');
     let userId = userIdInput.value.trim();
+    let amount = amountInput.value.trim();
 
     if (!userId) {
         alert('Please enter a valid User ID');
+        return;
+    }
+    if (!amount) {
+        alert('Please enter a amount of recommendations');
         return;
     }
 
@@ -136,7 +143,7 @@ async function fetchRecommendations() {
 
     try {
         const response = await axios.get(API_URL, {
-            params: { user_id: userId, k: 5 },
+            params: { user_id: userId, k: amount },
             headers: {
                 "ngrok-skip-browser-warning": "69420"
             }
