@@ -14,18 +14,11 @@ model = None
 users_df = None
 recipes_df = None
 recipe_embeddings = None 
-recipe_ids = None        
-
-origins = [
-    "http://localhost:3000",    
-    "http://127.0.0.1:3000",
-    "http://localhost:5173",    
-    "https://saleable-calceolate-carolyne.ngrok-free.dev",  
-]
+recipe_ids = None
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -133,15 +133,15 @@ async function fetchRecommendations() {
     `;
 
     try {
-        console.log(await axios.get(API_URL, {
-            params: {user_id: userId}
-        }))
+        console.log(userId)
         const response = await axios.get(API_URL, {
-            params: {user_id: userId}
+            params: { user_id: userId, k: 5 },
+            headers: {
+                "ngrok-skip-browser-warning": "69420"
+            }
         });
 
         const responseData = response.data;
-        console.log(responseData)
         const coffees = responseData.coffees ? responseData.coffees : responseData;
 
         container.innerHTML = '';
