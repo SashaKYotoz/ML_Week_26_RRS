@@ -7,4 +7,5 @@ dependencies = [
     "ipykernel>=7.1.0",
     "pandas>=3.0.0",
     "scikit-learn>=1.8.0",
+    "torch>=2.10.0",
 ]

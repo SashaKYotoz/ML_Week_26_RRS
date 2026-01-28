@@ -1,0 +1,31 @@
+{
+  "coffees": [
+    {
+      "recipe_name": "Latte",
+      "description": "Espresso with lots of steamed milk and a thin layer of foam",
+      "taste_bitterness": "0.8",
+      "taste_sweetness": "0.5",
+      "taste_acidity": "0.1",
+      "taste_body": "0.5",
+      "strength": "2",
+      "portion_size_ml": "30",
+      "difficulty": "intermediate",
+      "rating": "5.0",
+      "preparation_time_minutes": "4",
+      "required_equipment": [
+        "espresso_machine",
+        "grinder"
+      ],
+      "required_products": [
+        "coffee_beans: 18g",
+        "water: 200ml"
+      ],
+      "tags": [
+        "hot",
+        "classic",
+        "high_caffeine",
+        "quick"
+      ]
+    }
+  ]
+}
