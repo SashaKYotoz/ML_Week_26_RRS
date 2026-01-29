@@ -6,6 +6,9 @@ from load_data import load_model, load_df, load_recipe_embeddings
 from recommendations import get_recommendations
 from typing import List
 from fastapi.templating import Jinja2Templates
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 app = FastAPI()
 
@@ -41,7 +44,7 @@ def predict_top_k(
     return results
 
     
-app.mount("/", StaticFiles(directory="../front", html=True), name="front")
+app.mount("/", StaticFiles(directory=BASE_DIR / "../front", html=True), name="front")
 
 @app.get('/')
 def home(request: Request):

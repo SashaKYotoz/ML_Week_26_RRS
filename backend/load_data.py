@@ -1,16 +1,19 @@
 import pandas as pd
 from twotower import TwoTowerModel
 import torch
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
 
 def load_model():
     model = TwoTowerModel(user_dim=4, item_dim=4, embedding_dim=32)
-    model.load_state_dict(torch.load('./model_weights.pth', map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load(BASE_DIR / "model_weights.pth", map_location=torch.device('cpu')))
     model.eval()
     return model
 
 def load_df():
-    users_df = pd.read_csv('../student_data/users.csv').fillna(0)
-    recipes_df = pd.read_csv('../student_data/recipes.csv').fillna(0)
+    users_df = pd.read_csv(BASE_DIR / '../student_data/users.csv').fillna(0)
+    recipes_df = pd.read_csv(BASE_DIR / '../student_data/recipes.csv').fillna(0)
 
     return users_df, recipes_df
 
