@@ -43,20 +43,17 @@ source .venv/bin/activate
 # Install all necessary libraries from requirements.txt
 pip install -r requirements.txt
 ```
-### 3. Run Model Analysis
-
-Execute the diagnostic script to view detailed model performance metrics (MAE, RMSE, F1-score) and generate the feature importance plot:
-```bash
-
-```
-### 4. Running the Application
+### 3. Running the Application
 
 To start the full system, you need to run the backend server, open index.html to graphical output.
+```
+uvicorn main:app --app-dir backend --host 0.0.0.0 --port 80
+```
 
-### 4.1. Start the Backend Server
+### 3.1. Start the Backend Server
 The server handles API requests and model inference. Navigate to the project root and run:
 ```bash
-
+http://localhost/
 ```
-### 4.2. Frontend Interface
+### 3.2. Frontend Interface
 Frontend is represented as basic html-js app where index.html is graphic interface of this project. Inputs on html are processed via script.js with get request operated by axios javascript library and once response is received cards of recommended coffees are generated.
