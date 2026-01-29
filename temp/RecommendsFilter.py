@@ -176,7 +176,7 @@ def evaluate_CB_model(val_path, train_path, recipes_path, k=5):
 
 if __name__ == "__main__":
     evaluate_CB_model(
-        val_path="student_data/interactions_val.csv",       
+        val_path="student_data/interactions_val_cold.csv",       
         train_path="student_data/interactions_train.csv",   
         recipes_path="student_data/recipes.csv",                      
         k=5                                    

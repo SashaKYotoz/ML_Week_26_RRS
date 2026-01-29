@@ -1,6 +1,6 @@
 // const API_URL = 'https://saleable-calceolate-carolyne.ngrok-free.dev/predict';
-const API_URL = 'https://ml-week-26-rrs-1.onrender.com/predict';
-
+// const API_URL = 'https://ml-week-26-rrs-1.onrender.com/predict';
+const API_URL = 'http://127.0.0.1:8000/predict';
 function formatLabel(str) {
     if (!str) return '';
     return str.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
