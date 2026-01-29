@@ -1,3 +1,4 @@
+// const API_URL = 'https://saleable-calceolate-carolyne.ngrok-free.dev/predict';
 const API_URL = 'https://ml-week-26-rrs-1.onrender.com/predict';
 
 function formatLabel(str) {
