@@ -32,13 +32,13 @@ cd ML_Week_26_RRS
 
 ```bash
 # Create a virtual environment to isolate dependencies
-python -m venv .venv
+python -m venv venv
 
 # Activate the environment
 # On macOS/Linux:
-source .venv/bin/activate 
+source venv/bin/activate 
 # On Windows:
-.venv\Scripts\activate
+venv\Scripts\activate
 
 # Install all necessary libraries from requirements.txt
 pip install -r requirements.txt
